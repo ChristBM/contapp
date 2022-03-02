@@ -23,7 +23,6 @@ export default function Input({ newQuery }: Props): ReactElement {
 
 		if (data.query !== '') {
 			setState(false)
-			console.log(data.query)
 			newQuery(data.query as string)
 		} else {
 			setState(true)

@@ -19,16 +19,22 @@ export default function MainHome({ loading, postList, fetchError }: Props) {
 				postList.map((hit: any) => (
 					<Card
 						key={hit.objectID}
-						title={hit.title}
+						title={
+							hit.title != null
+								? hit.title
+								: hit.story_title != null
+								? hit.story_title
+								: 'Sin Título'
+						}
 						author={hit.author}
 						created_at={hit.created_at}
 					/>
 				))
 			)}
 			{fetchError !== '' ? (
-				<div>
-					<BiError size='100px' color='#c00142' />
-					<h2>¡Ha ocurrido un error!</h2>
+				<div className='error_cont'>
+					<BiError size='150px' color='#c00142' />
+					<h2 className='error'>¡Ha ocurrido un error!</h2>
 				</div>
 			) : null}
 			<style jsx>{`
@@ -49,6 +55,19 @@ export default function MainHome({ loading, postList, fetchError }: Props) {
 						#265ac9,
 						#5468ff
 					);
+				}
+				.error_cont {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: 10px;
+				}
+				.error {
+					color: #fff;
+					font-size: 2rem;
+					font-weight: 600;
+					letter-spacing: 1px;
+					line-height: calc(2rem * 1.4);
 				}
 			`}</style>
 		</div>

@@ -51,7 +51,6 @@ export default function useFetch() {
 			try {
 				const response = await fetch(`${URL}search_by_date?query=${state.theQuery}`)
 				const data = await response.json()
-				console.log(data.hits)
 				dispatch({
 					type: ACTION_TYPES.SUCCESS,
 					payload: data.hits,
